@@ -3,29 +3,29 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControlSystem implements Notifications{
+public class ControlSystem implements Notification {
+    private List<String> genreList = new ArrayList<>();
+    private List<Genres> genres = new ArrayList<>();
 
-    private List<String> topics = new ArrayList<>();
-    private List<TeachesStudents> students = new ArrayList<>();
-
-    public void addTopic(String topic){
-        this.topics.add(topic);
-        notifyAllStudents();
+    public void addGenre(String genre){
+        this.genreList.add(genre);
+        notifyAllCustomers();
     }
 
-    public void removeTopic(String topic){
-        this.topics.remove(topic);
-        notifyAllStudents();
-    }
-    @Override
-    public void NewTopic(TeachesStudents topicName) {
-        this.students.add(topicName);
+    public void removeGenre(String genre){
+        this.genreList.remove(genre);
+        notifyAllCustomers();
     }
 
     @Override
-    public void notifyAllStudents() {
-        for (TeachesStudents topicName: students){
-            topicName.update(this.topics);
+    public void Genres(Genres genres) {
+        this.genres.add(genres);
+    }
+
+    @Override
+    public void notifyAllCustomers() {
+        for (Genres genres: genres) {
+            genres.update(this.genreList);
         }
     }
 }
